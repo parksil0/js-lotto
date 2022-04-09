@@ -22,12 +22,17 @@ describe('step1 필수 요구사항', () => {
   });
 
   it('로또 구입 금액이 1000원 단위가 아닌 경우, alert창을 호출한다.', () => {
+    const stub = cy.stub();
+
+    cy.on('window:alert', stub);
+
     cy.get('#input-price').type(1200);
-    cy.get('#input-price-btn').click();
-    cy.on('window:alert', (text) => {
-      expect(text).to.contains(
-        '로또 구입 금액을 1,000원 단위로 입력해 주세요.',
-      );
-    });
+    cy.get('#input-price-btn')
+      .click()
+      .then(() => {
+        expect(stub.getCall(0).lastArg).to.contains(
+          '로또 구입 금액을 1,000원 단위로 입력해 주세요.',
+        );
+      });
   });
 });
