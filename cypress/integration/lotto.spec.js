@@ -5,6 +5,12 @@ describe('step1 필수 요구사항', () => {
     cy.visit('http://127.0.0.1:5500');
   });
 
+  it('초기 화면에는 로또 구입 form만 보인다.', () => {
+    cy.get('#input-price-form').should('be.visible');
+    cy.get('#purchased-lottos').should('not.be.visible');
+    cy.get('#input-lotto-nums').should('not.be.visible');
+  });
+
   it('로또 구입 금액 input은 필수 입력이다.', () => {
     cy.get('#input-price-btn').click();
     cy.get('input:invalid').should('have.length', 1);
