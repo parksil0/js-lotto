@@ -1,3 +1,5 @@
+import { emit } from '../utils/dom.js';
+
 export default class View {
   constructor(element) {
     this.element = element;
