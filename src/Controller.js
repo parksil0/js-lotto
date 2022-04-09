@@ -25,6 +25,7 @@ export default class Controller {
     const { value } = e.detail;
 
     this.isPassedInputPrice = true;
+    this.purchasedLottosView.setNumberOfLottos(value);
     this.render();
   }
 
