@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE, MIN_INPUT_PRICE } from '../constants.js';
 import { $ } from '../utils/dom.js';
 import View from './View.js';
 
@@ -21,9 +22,9 @@ export default class InputPriceFormView extends View {
   handleButtonClick(e) {
     const { value } = this.inputPrice;
 
-    if (Number(value) >= 1000 && Number(value) % 1000 !== 0) {
+    if (Number(value) >= MIN_INPUT_PRICE && Number(value) % MIN_INPUT_PRICE) {
       e.preventDefault();
-      alert('로또 구입 금액을 1,000원 단위로 입력해 주세요.');
+      alert(ERROR_MESSAGE.NOT_TYPE_UNIT_OF_THOUSAND);
       this.inputPrice.value = '';
       return;
     }

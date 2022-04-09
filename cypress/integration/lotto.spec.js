@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from '../../src/constants.js';
+
 describe('step1 필수 요구사항', () => {
   beforeEach(() => {
     cy.visit('http://127.0.0.1:5500');
@@ -31,7 +33,7 @@ describe('step1 필수 요구사항', () => {
       .click()
       .then(() => {
         expect(stub.getCall(0).lastArg).to.contains(
-          '로또 구입 금액을 1,000원 단위로 입력해 주세요.',
+          ERROR_MESSAGE.NOT_TYPE_UNIT_OF_THOUSAND,
         );
       });
   });
