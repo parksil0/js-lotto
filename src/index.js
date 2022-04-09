@@ -1,6 +1,6 @@
 import Controller from './Controller.js';
 import InputLottoNumsView from './views/InputLottoNumsView.js';
-import InputPriceFormView from './views/InputPriceFormView.js.js';
+import InputPriceFormView from './views/InputPriceFormView.js';
 import PurchasedLottosView from './views/PurchasedLottosView.js';
 
 const lottoController = new Controller({
