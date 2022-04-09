@@ -59,4 +59,15 @@ describe('step1 필수 요구사항', () => {
     cy.get('#total-purchased').should('have.text', '총 2개를 구매하였습니다.');
     cy.get('#lotto-icons').find('li').should('have.length', 2);
   });
+
+  it('번호 보기 토글 버튼을 클릭 하면, 복권 번호를 볼 수 있다.', () => {
+    cy.get('#input-price').type(2000);
+    cy.get('#input-price-btn').click();
+    cy.get('.switch').click();
+
+    cy.get('.lotto-detail').each((el) => {
+      const { length } = el[0].innerText.split(',');
+      expect(length).to.equal(7);
+    });
+  });
 });
