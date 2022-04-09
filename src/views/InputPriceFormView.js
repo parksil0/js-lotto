@@ -24,21 +24,18 @@ export default class InputPriceFormView extends View {
   }
 
   handleButtonClick(e) {
-    const { value } = this.inputPrice;
+    const value = Number(this.inputPrice.value);
 
-    if (Number(value) >= MIN_INPUT_PRICE && Number(value) % MIN_INPUT_PRICE) {
+    if (value >= MIN_INPUT_PRICE && value % MIN_INPUT_PRICE) {
       e.preventDefault();
       alert(ERROR_MESSAGE.NOT_TYPE_UNIT_OF_THOUSAND);
       this.inputPrice.value = '';
       return;
     }
 
-    if (
-      Number(value) >= MIN_INPUT_PRICE &&
-      !(Number(value) % MIN_INPUT_PRICE)
-    ) {
+    if (value >= MIN_INPUT_PRICE && !(value % MIN_INPUT_PRICE)) {
       e.preventDefault();
-      const numberOfLottos = Number(value) / MIN_INPUT_PRICE;
+      const numberOfLottos = value / MIN_INPUT_PRICE;
       this.emit(CUSTOM_EVENT_NAME.INPUT_PRICE_FORM_SUBMIT, {
         value: numberOfLottos,
       });
