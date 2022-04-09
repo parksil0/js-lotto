@@ -3,4 +3,8 @@ export const ERROR_MESSAGE = {
   NOT_TYPE_UNIT_OF_THOUSAND: '로또 구입 금액을 1,000원 단위로 입력해 주세요.',
 };
 
+export const CUSTOM_EVENT_NAME = {
+  INPUT_PRICE_FORM_SUBMIT: '@inputPriceFormSubmit',
+};
+
 export const MIN_INPUT_PRICE = 1000;

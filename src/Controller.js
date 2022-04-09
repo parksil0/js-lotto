@@ -1,3 +1,5 @@
+import { CUSTOM_EVENT_NAME } from './constants.js';
+
 export default class Controller {
   constructor({ inputPriceFormView, purchasedLottosView, inputLottoNumsView }) {
     this.inputPriceFormView = inputPriceFormView;
@@ -14,7 +16,7 @@ export default class Controller {
 
   subscribeViewEvents() {
     this.inputPriceFormView.addEventListener(
-      '@inputPriceFormSubmit',
+      CUSTOM_EVENT_NAME.INPUT_PRICE_FORM_SUBMIT,
       this.handleSubmitInputPriceForm.bind(this),
     );
   }

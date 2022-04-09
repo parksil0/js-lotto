@@ -1,4 +1,8 @@
-import { ERROR_MESSAGE, MIN_INPUT_PRICE } from '../constants.js';
+import {
+  CUSTOM_EVENT_NAME,
+  ERROR_MESSAGE,
+  MIN_INPUT_PRICE,
+} from '../constants.js';
 import { $ } from '../utils/dom.js';
 import View from './View.js';
 
@@ -35,7 +39,9 @@ export default class InputPriceFormView extends View {
     ) {
       e.preventDefault();
       const numberOfLottos = Number(value) / MIN_INPUT_PRICE;
-      this.emit('@inputPriceFormSubmit', { value: numberOfLottos });
+      this.emit(CUSTOM_EVENT_NAME.INPUT_PRICE_FORM_SUBMIT, {
+        value: numberOfLottos,
+      });
       return;
     }
   }
