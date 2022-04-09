@@ -51,4 +51,12 @@ describe('step1 필수 요구사항', () => {
     cy.get('#purchased-lottos').should('be.visible');
     cy.get('#input-lotto-nums').should('be.visible');
   });
+
+  it('입력한 금액만큼의 로또를 자동 구매할 수 있다.', () => {
+    cy.get('#input-price').type(2000);
+    cy.get('#input-price-btn').click();
+
+    cy.get('#total-purchased').should('have.text', '총 2개를 구매하였습니다.');
+    cy.get('#lotto-icons').find('li').should('have.length', 2);
+  });
 });
