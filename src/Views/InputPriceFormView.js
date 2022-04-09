@@ -28,5 +28,15 @@ export default class InputPriceFormView extends View {
       this.inputPrice.value = '';
       return;
     }
+
+    if (
+      Number(value) >= MIN_INPUT_PRICE &&
+      !(Number(value) % MIN_INPUT_PRICE)
+    ) {
+      e.preventDefault();
+      const numberOfLottos = Number(value) / MIN_INPUT_PRICE;
+      this.emit('@inputPriceFormSubmit', { value: numberOfLottos });
+      return;
+    }
   }
 }
