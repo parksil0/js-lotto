@@ -13,5 +13,10 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  rules: {},
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': ['error'],
+    'max-classes-per-file': ['error', { max: 2 }],
+    'import/extensions': [{ js: 'always' }],
+  },
 };
