@@ -9,6 +9,21 @@ export default class Controller {
 
   initialize() {
     this.render();
+    this.subscribeViewEvents();
+  }
+
+  subscribeViewEvents() {
+    this.inputPriceFormView.addEventListener(
+      '@inputPriceFormSubmit',
+      this.handleSubmitInputPriceForm.bind(this),
+    );
+  }
+
+  handleSubmitInputPriceForm(e) {
+    const { value } = e.detail;
+
+    this.isPassedInputPrice = true;
+    this.render();
   }
 
   render() {
