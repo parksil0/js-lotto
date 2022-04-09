@@ -1,4 +1,4 @@
-import { $, $$ } from '../utils/dom.js';
+import { $, $$, setDisplay } from '../utils/dom.js';
 import { getLottoNumbers } from '../utils/getRandomLottoNumbers.js';
 import View from './View.js';
 
@@ -31,15 +31,11 @@ export default class PurchasedLottosView extends View {
     const lottoDetails = $$('.lotto-detail');
 
     if (!checked) {
-      lottoDetails.forEach((el) => {
-        el.style.display = 'none';
-      });
+      lottoDetails.forEach((el) => setDisplay(el, 'none'));
       return;
     }
 
-    lottoDetails.forEach((el) => {
-      el.style.display = 'inline';
-    });
+    lottoDetails.forEach((el) => setDisplay(el, 'inline'));
   }
 
   setNumberOfLottos(numberOfLottos) {
