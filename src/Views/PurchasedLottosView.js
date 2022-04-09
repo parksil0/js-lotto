@@ -1,4 +1,4 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 import { getLottoNumbers } from '../utils/getRandomLottoNumbers.js';
 import View from './View.js';
 
@@ -7,10 +7,39 @@ export default class PurchasedLottosView extends View {
     super($('#purchased-lottos'));
     this.totalPurchased = $('#total-purchased');
     this.lottoIcons = $('#lotto-icons');
+    this.numberViewSwitch = $('.lotto-numbers-toggle-button');
 
     this.template = new Template();
 
     this.numberOfLottos = 0;
+
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    this.numberViewSwitch.addEventListener(
+      'change',
+      this.handleChangeNumberViewSwitch.bind(this),
+    );
+  }
+
+  handleChangeNumberViewSwitch() {
+    const { checked } = this.numberViewSwitch;
+
+    this.lottoIcons.classList.toggle('flex-col');
+
+    const lottoDetails = $$('.lotto-detail');
+
+    if (!checked) {
+      lottoDetails.forEach((el) => {
+        el.style.display = 'none';
+      });
+      return;
+    }
+
+    lottoDetails.forEach((el) => {
+      el.style.display = 'inline';
+    });
   }
 
   setNumberOfLottos(numberOfLottos) {
