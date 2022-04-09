@@ -66,7 +66,7 @@ class Template {
 
   _getLottoListItem(lotto) {
     return `
-      <li class="mx-1" style="list-style: none; display: flex;">
+      <li class="mx-1">
         <span class="lotto-icon text-4xl">🎟️ </span>
         <span class="lotto-detail text-4xl">${lotto}</span>
       </li>
