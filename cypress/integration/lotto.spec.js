@@ -43,4 +43,12 @@ describe('step1 필수 요구사항', () => {
         );
       });
   });
+
+  it('구입 금액이 정상적으로 입력 된 경우, 구입한 로또와 당첨번호 입력 form이 나타난다.', () => {
+    cy.get('#input-price').type(3000);
+    cy.get('#input-price-btn').click();
+
+    cy.get('#purchased-lottos').should('be.visible');
+    cy.get('#input-lotto-nums').should('be.visible');
+  });
 });
