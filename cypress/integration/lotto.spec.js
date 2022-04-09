@@ -61,13 +61,16 @@ describe('step1 필수 요구사항', () => {
   });
 
   it('번호 보기 토글 버튼을 클릭 하면, 복권 번호를 볼 수 있다.', () => {
-    cy.get('#input-price').type(2000);
+    cy.get('#input-price').type(1000);
     cy.get('#input-price-btn').click();
     cy.get('.switch').click();
 
-    cy.get('.lotto-detail').each((el) => {
-      const { length } = el[0].innerText.split(',');
-      expect(length).to.equal(7);
-    });
+    cy.get('.lotto-detail')
+      .should('not.have.css', 'display', 'none')
+      .invoke('text')
+      .then((text) => {
+        const { length } = text.split(',');
+        expect(length).to.eq(7);
+      });
   });
 });
