@@ -5,12 +5,10 @@ export default class Controller {
     this.inputPriceFormView = inputPriceFormView;
     this.purchasedLottosView = purchasedLottosView;
     this.inputLottoNumsView = inputLottoNumsView;
-
-    this.isPassedInputPrice = false;
   }
 
   initialize() {
-    this.render();
+    this.renderInitialView();
     this.subscribeViewEvents();
   }
 
@@ -24,18 +22,17 @@ export default class Controller {
   handleSubmitInputPriceForm(e) {
     const { value } = e.detail;
 
-    this.isPassedInputPrice = true;
     this.purchasedLottosView.setNumberOfLottos(value);
-    this.render();
+    this.renderWholeView();
   }
 
-  render() {
-    if (this.isPassedInputPrice) {
-      this.purchasedLottosView.show();
-      this.inputLottoNumsView.show();
-    } else {
-      this.purchasedLottosView.hide();
-      this.inputLottoNumsView.hide();
-    }
+  renderInitialView() {
+    this.purchasedLottosView.hide();
+    this.inputLottoNumsView.hide();
+  }
+
+  renderWholeView() {
+    this.purchasedLottosView.show();
+    this.inputLottoNumsView.show();
   }
 }
