@@ -9,8 +9,6 @@ export default class PurchasedLottosView extends View {
     this.lottoIcons = $('#lotto-icons');
     this.numberViewSwitch = $('.lotto-numbers-toggle-button');
 
-    this.template = new Template();
-
     this.numberOfLottos = 0;
 
     this.bindEvents();
@@ -43,19 +41,17 @@ export default class PurchasedLottosView extends View {
   }
 
   show() {
-    this.totalPurchased.innerHTML = this.template.getNumberOfLotteries(
+    this.totalPurchased.innerHTML = this.getNumberOfLotteries(
       this.numberOfLottos,
     );
 
-    this.lottoIcons.innerHTML = this.template.getLottoList(
+    this.lottoIcons.innerHTML = this.getLottoList(
       getLottoNumbers(this.numberOfLottos),
     );
 
     super.show();
   }
-}
 
-class Template {
   getNumberOfLotteries(numberOfLottos) {
     return `총 ${numberOfLottos}개를 구매하였습니다.`;
   }
