@@ -8,3 +8,8 @@ export const CUSTOM_EVENT_NAME = {
 };
 
 export const MIN_INPUT_PRICE = 1000;
+
+export const VALIDATION_MESSAGE = {
+  valueMissing: '필수 입력입니다.',
+  rangeUnderflow: `최소 입력 금액은 ${MIN_INPUT_PRICE}원 입니다.`,
+};

@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../../src/constants.js';
+import { ERROR_MESSAGE, VALIDATION_MESSAGE } from '../../src/constants.js';
 
 describe('step1 필수 요구사항', () => {
   beforeEach(() => {
@@ -16,7 +16,9 @@ describe('step1 필수 요구사항', () => {
       cy.get('#input-price-btn').click();
       cy.get('input:invalid').should('have.length', 1);
       cy.get('#input-price').then((input) => {
-        expect(input[0].validationMessage).to.eq('Please fill out this field.');
+        expect(input[0].validationMessage).to.eq(
+          VALIDATION_MESSAGE.valueMissing,
+        );
       });
     });
 
@@ -25,7 +27,7 @@ describe('step1 필수 요구사항', () => {
       cy.get('#input-price-btn').click();
       cy.get('#input-price').then((input) => {
         expect(input[0].validationMessage).to.eq(
-          'Value must be greater than or equal to 1000.',
+          VALIDATION_MESSAGE.rangeUnderflow,
         );
       });
     });
