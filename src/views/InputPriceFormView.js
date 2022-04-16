@@ -10,36 +10,26 @@ export default class InputPriceFormView extends View {
   constructor() {
     super($('#input-price-form'));
 
-    this.inputPrice = $('#input-price');
-    this.inputPriceButton = $('#input-price-btn');
-
     this.bindEvents();
   }
 
   bindEvents() {
-    this.inputPriceButton.addEventListener(
-      'click',
-      this.handleButtonClick.bind(this),
-    );
+    this.element.addEventListener('submit', this.handleSubmit.bind(this));
   }
 
-  handleButtonClick(e) {
-    const value = Number(this.inputPrice.value);
+  handleSubmit(e) {
+    e.preventDefault();
+    const { value } = e.srcElement['input-price'];
 
     if (value >= MIN_INPUT_PRICE && value % MIN_INPUT_PRICE) {
-      e.preventDefault();
       alert(ERROR_MESSAGE.NOT_TYPE_UNIT_OF_THOUSAND);
-      this.inputPrice.value = '';
+      e.srcElement['input-price'] = '';
       return;
     }
 
-    if (value >= MIN_INPUT_PRICE && !(value % MIN_INPUT_PRICE)) {
-      e.preventDefault();
-      const numberOfLottos = value / MIN_INPUT_PRICE;
-      this.emit(CUSTOM_EVENT_NAME.INPUT_PRICE_FORM_SUBMIT, {
-        value: numberOfLottos,
-      });
-      return;
-    }
+    const numberOfLottos = value / MIN_INPUT_PRICE;
+    this.emit(CUSTOM_EVENT_NAME.INPUT_PRICE_FORM_SUBMIT, {
+      value: numberOfLottos,
+    });
   }
 }
