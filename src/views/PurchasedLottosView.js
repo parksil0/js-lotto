@@ -24,16 +24,16 @@ export default class PurchasedLottosView extends View {
   handleChangeNumberViewSwitch() {
     const { checked } = this.numberViewSwitch;
 
-    this.lottoIcons.classList.toggle('flex-col');
-
     const lottoDetails = $$('.lotto-detail');
 
-    if (!checked) {
-      lottoDetails.forEach((el) => setDisplay(el, 'none'));
+    if (checked) {
+      this.lottoIcons.classList.add('flex-col');
+      lottoDetails.forEach((el) => setDisplay(el, 'inline'));
       return;
     }
 
-    lottoDetails.forEach((el) => setDisplay(el, 'inline'));
+    this.lottoIcons.classList.remove('flex-col');
+    lottoDetails.forEach((el) => setDisplay(el, 'none'));
   }
 
   setNumberOfLottos(numberOfLottos) {
