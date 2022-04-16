@@ -1,7 +1,5 @@
 export const getLottoNumbers = (number) => {
-  const array = Array.from({ length: number });
-
-  return array.map((_) => generateLotto());
+  return Array.from({ length: number }, (_) => generateLotto());
 };
 
 const generateLotto = () => {
