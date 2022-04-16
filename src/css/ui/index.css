@@ -18,3 +18,11 @@
   margin-left: 12px;
   display: none;
 }
+
+.lotto-details-display-hide {
+  display: none;
+}
+
+.lotto-details-display-show {
+  display: inline;
+}
