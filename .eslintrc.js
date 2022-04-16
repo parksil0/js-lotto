@@ -7,7 +7,6 @@ module.exports = {
     'eslint:recommended',
     'airbnb-base',
     'prettier',
-    'eslint-config-prettier',
     'plugin:cypress/recommended',
   ],
   parserOptions: {
