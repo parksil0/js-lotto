@@ -29,7 +29,6 @@ export default class PurchasedLottosView extends View {
     if (checked) {
       this.lottoIcons.classList.add('flex-col');
       lottoDetails.forEach((el) => {
-        el.classList.remove('lotto-details-display-hide');
         el.classList.add('lotto-details-display-show');
       });
       return;
@@ -38,7 +37,6 @@ export default class PurchasedLottosView extends View {
     this.lottoIcons.classList.remove('flex-col');
     lottoDetails.forEach((el) => {
       el.classList.remove('lotto-details-display-show');
-      el.classList.add('lotto-details-display-hide');
     });
   }
 
