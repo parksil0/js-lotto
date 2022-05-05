@@ -46,7 +46,9 @@ describe('step1 필수 요구사항', () => {
           );
         });
     });
+  });
 
+  context('로또 구입 이후', () => {
     it('구입 금액이 정상적으로 입력 된 경우, 구입한 로또와 당첨번호 입력 form이 나타난다.', () => {
       cy.get('#input-price').type(3000);
       cy.get('#input-price-btn').click();
@@ -77,6 +79,17 @@ describe('step1 필수 요구사항', () => {
         .then((text) => {
           const { length } = text.split(',');
           expect(length).to.eq(7);
+        });
+    });
+
+    it('당첨번호를 모두 입력하지 않으면 alert창을 호출한다.', () => {
+      const stub = cy.stub();
+      cy.on('window:alert', stub);
+
+      cy.get('.open-result-modal-button')
+        .click()
+        .then(() => {
+          expect(stub.getCall(0).lastArg).to.contains('숫자를 입력해주세요.');
         });
     });
   });
