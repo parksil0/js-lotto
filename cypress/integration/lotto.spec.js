@@ -110,5 +110,15 @@ describe('step1 필수 요구사항', () => {
           );
         });
     });
+
+    it('당첨번호를 정상적으로 입력을 완료하면 모달창을 호출한다.', () => {
+      cy.get('#input-price').type(1000);
+      cy.get('#input-price-btn').click();
+
+      cy.typeLottoInputNumbers('1, 2, 3, 4, 5, 6, 7');
+      cy.get('.open-result-modal-button').click();
+
+      cy.get('.modal').should('be.visible');
+    });
   });
 });
