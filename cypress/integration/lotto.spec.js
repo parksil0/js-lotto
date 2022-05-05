@@ -94,5 +94,21 @@ describe('step1 필수 요구사항', () => {
           expect(stub.getCall(0).lastArg).to.contains('숫자를 입력해주세요.');
         });
     });
+
+    it('당첨번호 중 중복된 숫자가 있으면 alert창을 호출한다.', () => {
+      cy.get('#input-price').type(1000);
+      cy.get('#input-price-btn').click();
+      cy.typeLottoInputNumbers('1, 1, 1, 1, 1, 1, 1');
+      const stub = cy.stub();
+      cy.on('window:alert', stub);
+
+      cy.get('.open-result-modal-button')
+        .click()
+        .then(() => {
+          expect(stub.getCall(0).lastArg).to.contains(
+            '로또 번호에는 중복된 숫자를 입력할 수 없습니다.',
+          );
+        });
+    });
   });
 });
