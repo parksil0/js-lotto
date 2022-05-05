@@ -83,6 +83,8 @@ describe('step1 필수 요구사항', () => {
     });
 
     it('당첨번호를 모두 입력하지 않으면 alert창을 호출한다.', () => {
+      cy.get('#input-price').type(1000);
+      cy.get('#input-price-btn').click();
       const stub = cy.stub();
       cy.on('window:alert', stub);
 
