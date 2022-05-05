@@ -40,7 +40,8 @@ export default class InputPriceFormView extends View {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { value } = e.srcElement['input-price'];
+    const $input = e.target.elements['input-price'];
+    const { value } = $input;
 
     if (value >= MIN_INPUT_PRICE && value % MIN_INPUT_PRICE) {
       alert(ERROR_MESSAGE.NOT_TYPE_UNIT_OF_THOUSAND);
