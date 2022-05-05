@@ -1,10 +1,16 @@
 import { CUSTOM_EVENT_NAME } from './constants.js';
 
 export default class Controller {
-  constructor({ inputPriceFormView, purchasedLottosView, inputLottoNumsView }) {
+  constructor({
+    inputPriceFormView,
+    purchasedLottosView,
+    inputLottoFormView,
+    modalView,
+  }) {
     this.inputPriceFormView = inputPriceFormView;
     this.purchasedLottosView = purchasedLottosView;
-    this.inputLottoNumsView = inputLottoNumsView;
+    this.inputLottoFormView = inputLottoFormView;
+    this.modalView = modalView;
   }
 
   initialize() {
@@ -28,11 +34,11 @@ export default class Controller {
 
   renderInitialView() {
     this.purchasedLottosView.hide();
-    this.inputLottoNumsView.hide();
+    this.inputLottoFormView.hide();
   }
 
   renderWholeView() {
     this.purchasedLottosView.show();
-    this.inputLottoNumsView.show();
+    this.inputLottoFormView.show();
   }
 }
