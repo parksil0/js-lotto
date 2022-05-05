@@ -25,5 +25,12 @@ export default class InputLottoFormView extends View {
       alert('숫자를 입력해주세요.');
       return;
     }
+
+    const lottoNums = Array.from(new Set(numbers.map((el) => el.value)));
+
+    if (lottoNums.length < 7) {
+      alert('로또 번호에는 중복된 숫자를 입력할 수 없습니다.');
+      return;
+    }
   }
 }
