@@ -23,6 +23,11 @@ export default class Controller {
       CUSTOM_EVENT_NAME.INPUT_PRICE_FORM_SUBMIT,
       this.handleSubmitInputPriceForm.bind(this),
     );
+
+    this.inputLottoFormView.addEventListener(
+      CUSTOM_EVENT_NAME.GET_WINNING_RESULT,
+      this.handleShowWinningResult.bind(this),
+    );
   }
 
   handleSubmitInputPriceForm(e) {
@@ -30,6 +35,12 @@ export default class Controller {
 
     this.purchasedLottosView.setNumberOfLottos(value);
     this.renderWholeView();
+  }
+
+  handleShowWinningResult(e) {
+    const { value } = e.detail;
+    this.modalView.setWinningNumber(value);
+    this.renderModal();
   }
 
   renderInitialView() {
@@ -40,5 +51,9 @@ export default class Controller {
   renderWholeView() {
     this.purchasedLottosView.show();
     this.inputLottoFormView.show();
+  }
+
+  renderModal() {
+    this.modalView.show();
   }
 }

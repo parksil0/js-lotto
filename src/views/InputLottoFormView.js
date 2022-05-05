@@ -1,3 +1,4 @@
+import { CUSTOM_EVENT_NAME } from '../constants.js';
 import { $, $$ } from '../utils/dom.js';
 import View from './View.js';
 
@@ -32,5 +33,9 @@ export default class InputLottoFormView extends View {
       alert('로또 번호에는 중복된 숫자를 입력할 수 없습니다.');
       return;
     }
+
+    this.emit(CUSTOM_EVENT_NAME.GET_WINNING_RESULT, {
+      value: numbers.map((el) => el.value),
+    });
   }
 }
