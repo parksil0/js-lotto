@@ -35,7 +35,7 @@ export default class InputLottoFormView extends View {
     }
 
     this.emit(CUSTOM_EVENT_NAME.GET_WINNING_RESULT, {
-      value: numbers.map((el) => el.value),
+      value: numbers.map((el) => Number(el.value)),
     });
   }
 }

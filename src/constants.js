@@ -6,6 +6,7 @@ export const ERROR_MESSAGE = {
 export const CUSTOM_EVENT_NAME = {
   INPUT_PRICE_FORM_SUBMIT: '@inputPriceFormSubmit',
   GET_WINNING_RESULT: '@getWinningResult',
+  SET_PURCHASED_LOTTOS: '@setPurchasedLottos',
 };
 
 export const MIN_INPUT_PRICE = 1000;

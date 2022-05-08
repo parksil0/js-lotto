@@ -11,6 +11,9 @@ export default class Controller {
     this.purchasedLottosView = purchasedLottosView;
     this.inputLottoFormView = inputLottoFormView;
     this.modalView = modalView;
+
+    this.purchasedLottos = [];
+    this.winningNumber = [];
   }
 
   initialize() {
@@ -28,6 +31,15 @@ export default class Controller {
       CUSTOM_EVENT_NAME.GET_WINNING_RESULT,
       this.handleShowWinningResult.bind(this),
     );
+
+    this.purchasedLottosView.addEventListener(
+      CUSTOM_EVENT_NAME.SET_PURCHASED_LOTTOS,
+      this.handleSetPurchasedLottos.bind(this),
+    );
+  }
+
+  handleSetPurchasedLottos(e) {
+    this.purchasedLottos = e.detail.value;
   }
 
   handleSubmitInputPriceForm(e) {
@@ -38,8 +50,8 @@ export default class Controller {
   }
 
   handleShowWinningResult(e) {
-    const { value } = e.detail;
-    this.modalView.setWinningNumber(value);
+    this.winningNumber = e.detail.value;
+    this.modalView.setWinningNumber(this.winningNumber, this.purchasedLottos);
     this.renderModal();
   }
 
