@@ -144,5 +144,19 @@ describe('step1 필수 요구사항', () => {
         expect(isNumber).to.be.true;
       });
     });
+
+    it('모달 창의 다시 시작하기 버튼을 누르면 처음부터 다시 시작한다.', () => {
+      cy.get('#input-price').type(1000);
+      cy.get('#input-price-btn').click();
+
+      cy.typeLottoInputNumbers('1, 2, 3, 4, 5, 6, 7');
+      cy.get('.open-result-modal-button').click();
+
+      cy.get('#restart').click();
+
+      cy.get('#input-price').invoke('val').should('eq', '');
+      cy.get('#purchased-lottos').should('be.not.visible');
+      cy.get('#input-lotto-nums').should('be.not.visible');
+    });
   });
 });
