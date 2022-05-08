@@ -1,12 +1,10 @@
-import { $ } from '../utils/dom.js';
-import { getLottoNumbers } from '../utils/getRandomLottoNumbers.js';
+import { $, $$ } from '../utils/dom.js';
 import View from './View.js';
 
 export default class ModalView extends View {
   constructor() {
     super($('.modal'));
     this.closeButton = $('.modal-close');
-    this.winningNumber = getLottoNumbers(1);
 
     this.bindEvents();
   }
@@ -17,8 +15,34 @@ export default class ModalView extends View {
     });
   }
 
-  setWinningNumber(numbers) {
-    console.log(numbers, this.winningNumber);
+  setWinningNumber(winningNumber, purchasedLottos) {
+    const matchNumbers = Array.from({ length: 5 }, () => 0);
+    const winningPrices = [5000, 50000, 1500000, 30000000, 2000000000];
+    const bonusNumber = winningNumber.pop();
+
+    purchasedLottos.forEach((numbers) => {
+      const matchNumber = numbers.filter(
+        (number) => winningNumber.indexOf(number) > -1,
+      ).length;
+
+      if (matchNumber === 5 && numbers.indexOf(bonusNumber) > -1)
+        matchNumbers[matchNumber - 2] += 1;
+
+      if (matchNumber >= 3) matchNumbers[matchNumber - 3] += 1;
+    });
+
+    const yieldPrice = matchNumbers.reduce((prev, curr, idx) => {
+      return prev + winningPrices[idx] * curr;
+    }, 0);
+
+    const $matchNumbers = $$('.result-table tbody tr td:nth-child(3n)');
+    $matchNumbers.forEach((el, index) => {
+      el.textContent = `${matchNumbers[index]}개`;
+    });
+
+    $('#yield').textContent = `당신의 총 수익률은 ${
+      (yieldPrice / (purchasedLottos.length * 1000)) * 100 - 100
+    }% 입니다.`;
   }
 
   show() {
