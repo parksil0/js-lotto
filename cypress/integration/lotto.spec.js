@@ -120,5 +120,29 @@ describe('step1 필수 요구사항', () => {
 
       cy.get('.modal').should('be.visible');
     });
+
+    it('당첨된 경우, 모달창에 해당하는 등수와 수익률이 갱신된다.', () => {
+      cy.get('#input-price').type(1000);
+      cy.get('#input-price-btn').click();
+
+      cy.typeLottoInputNumbers('1, 2, 3, 4, 5, 6, 7');
+      cy.get('.open-result-modal-button').click();
+
+      cy.get('#yield').then(($el) => {
+        const resultText = $el.text().split(' ')[3];
+        const isNumber = !Number.isNaN(
+          resultText.substring(0, resultText.length - 1),
+        );
+        expect(isNumber).to.be.true;
+      });
+
+      cy.get('.result-table tbody tr td:nth-child(3n)').each(($el) => {
+        const rankText = $el.text();
+        const isNumber = !Number.isNaN(
+          rankText.substring(0, rankText.length - 1),
+        );
+        expect(isNumber).to.be.true;
+      });
+    });
   });
 });
