@@ -17,6 +17,13 @@ export default class InputLottoFormView extends View {
     );
   }
 
+  initialize() {
+    const numbers = [...$$('.winning-number'), $('.bonus-number')];
+    numbers.forEach(($el) => {
+      $el.value = '';
+    });
+  }
+
   handleClickOpenResultModalButton(e) {
     const numbers = [...$$('.winning-number'), $('.bonus-number')];
 

@@ -24,6 +24,10 @@ export default class InputPriceFormView extends View {
     );
   }
 
+  initialize() {
+    this.inputPrice.value = '';
+  }
+
   handleInputValidation(e) {
     this.inputPrice.setCustomValidity(
       this.getValidationMessage(e.target.validity) || '',
