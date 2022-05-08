@@ -36,6 +36,14 @@ export default class Controller {
       CUSTOM_EVENT_NAME.SET_PURCHASED_LOTTOS,
       this.handleSetPurchasedLottos.bind(this),
     );
+
+    this.modalView.addEventListener(CUSTOM_EVENT_NAME.RESTART, () => {
+      this.inputPriceFormView.initialize();
+      this.inputLottoFormView.initialize();
+      this.purchasedLottosView.initialize();
+      this.renderInitialView();
+      this.modalView.hide();
+    });
   }
 
   handleSetPurchasedLottos(e) {

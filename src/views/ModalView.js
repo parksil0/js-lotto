@@ -1,3 +1,4 @@
+import { CUSTOM_EVENT_NAME } from '../constants.js';
 import { $, $$ } from '../utils/dom.js';
 import View from './View.js';
 
@@ -5,6 +6,7 @@ export default class ModalView extends View {
   constructor() {
     super($('.modal'));
     this.closeButton = $('.modal-close');
+    this.restartButton = $('#restart');
 
     this.bindEvents();
   }
@@ -12,6 +14,9 @@ export default class ModalView extends View {
   bindEvents() {
     this.closeButton.addEventListener('click', () => {
       this.hide();
+    });
+    this.restartButton.addEventListener('click', () => {
+      this.emit(CUSTOM_EVENT_NAME.RESTART, {});
     });
   }
 
