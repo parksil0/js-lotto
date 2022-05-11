@@ -1,4 +1,4 @@
-import { CUSTOM_EVENT_NAME } from '../constants.js';
+import { CUSTOM_EVENT_NAME, ERROR_MESSAGE } from '../constants.js';
 import { $, $$ } from '../utils/dom.js';
 import View from './View.js';
 
@@ -6,6 +6,7 @@ export default class InputLottoFormView extends View {
   constructor() {
     super($('#input-lotto-nums'));
     this.openResultModalButton = $('.open-result-modal-button');
+    this.lottoInputNumbers = [...$$('.winning-number'), $('.bonus-number')];
 
     this.bindEvents();
   }
@@ -18,31 +19,30 @@ export default class InputLottoFormView extends View {
   }
 
   initialize() {
-    const numbers = [...$$('.winning-number'), $('.bonus-number')];
-    numbers.forEach(($el) => {
+    this.lottoInputNumbers.forEach(($el) => {
       $el.value = '';
     });
   }
 
-  handleClickOpenResultModalButton(e) {
-    const numbers = [...$$('.winning-number'), $('.bonus-number')];
-
-    const isEmpty = !numbers.every((el) => el.value !== '');
+  handleClickOpenResultModalButton() {
+    const isEmpty = !this.lottoInputNumbers.every((el) => el.value !== '');
 
     if (isEmpty) {
-      alert('숫자를 입력해주세요.');
+      alert(ERROR_MESSAGE.NOT_TYPE_NUMBER);
       return;
     }
 
-    const lottoNums = Array.from(new Set(numbers.map((el) => el.value)));
+    const lottoNums = Array.from(
+      new Set(this.lottoInputNumbers.map((el) => el.value)),
+    );
 
-    if (lottoNums.length < 7) {
-      alert('로또 번호에는 중복된 숫자를 입력할 수 없습니다.');
+    if (lottoNums.length < this.lottoInputNumbers.length) {
+      alert(ERROR_MESSAGE.NOT_TYPE_LOTTO_NUMBER_DUPLICATION);
       return;
     }
 
     this.emit(CUSTOM_EVENT_NAME.GET_WINNING_RESULT, {
-      value: numbers.map((el) => Number(el.value)),
+      value: this.lottoInputNumbers.map((el) => Number(el.value)),
     });
   }
 }
