@@ -37,13 +37,18 @@ export default class Controller {
       this.handleSetPurchasedLottos.bind(this),
     );
 
-    this.modalView.addEventListener(CUSTOM_EVENT_NAME.RESTART, () => {
-      this.inputPriceFormView.initialize();
-      this.inputLottoFormView.initialize();
-      this.purchasedLottosView.initialize();
-      this.renderInitialView();
-      this.modalView.hide();
-    });
+    this.modalView.addEventListener(
+      CUSTOM_EVENT_NAME.RESTART,
+      this.handleClickRestartButton.bind(this),
+    );
+  }
+
+  handleClickRestartButton() {
+    this.inputPriceFormView.initialize();
+    this.inputLottoFormView.initialize();
+    this.purchasedLottosView.initialize();
+    this.renderInitialView();
+    this.modalView.hide();
   }
 
   handleSetPurchasedLottos(e) {
