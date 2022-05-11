@@ -123,7 +123,7 @@ describe('step1 필수 요구사항', () => {
         expect(isNumber).to.be.true;
       });
 
-      cy.get('.result-table tbody tr td:nth-child(3n)').each(($el) => {
+      cy.get('.match-number-count').each(($el) => {
         const rankText = $el.text();
         const isNumber = !Number.isNaN(
           rankText.substring(0, rankText.length - 1),
