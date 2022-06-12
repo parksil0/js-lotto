@@ -1,6 +1,5 @@
 import { CUSTOM_EVENT_NAME } from '../constants.js';
 import { $, $$ } from '../utils/dom.js';
-import { getLottoNumbers } from '../utils/getRandomLottoNumbers.js';
 import View from './View.js';
 
 export default class PurchasedLottosView extends View {
@@ -56,19 +55,12 @@ export default class PurchasedLottosView extends View {
     this.numberOfLottos = numberOfLottos;
   }
 
-  show() {
+  show(purchasedLottos) {
     this.totalPurchased.innerHTML = this.getNumberOfLotteries(
       this.numberOfLottos,
     );
 
-    const purchasedLottos = getLottoNumbers(this.numberOfLottos);
-
-    this.emit(CUSTOM_EVENT_NAME.SET_PURCHASED_LOTTOS, {
-      value: purchasedLottos,
-    });
-
     this.lottoIcons.innerHTML = this.getLottoList(purchasedLottos);
-
     super.show();
   }
 

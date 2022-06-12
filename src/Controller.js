@@ -1,4 +1,5 @@
 import { CUSTOM_EVENT_NAME } from './constants.js';
+import { getLottoNumbers } from './utils/getRandomLottoNumbers.js';
 
 export default class Controller {
   constructor({
@@ -30,11 +31,6 @@ export default class Controller {
     this.inputLottoFormView.addEventListener(
       CUSTOM_EVENT_NAME.GET_WINNING_RESULT,
       this.handleShowWinningResult.bind(this),
-    );
-
-    this.purchasedLottosView.addEventListener(
-      CUSTOM_EVENT_NAME.SET_PURCHASED_LOTTOS,
-      this.handleSetPurchasedLottos.bind(this),
     );
 
     this.modalView.addEventListener(
@@ -70,14 +66,11 @@ export default class Controller {
     this.modalView.hide();
   }
 
-  handleSetPurchasedLottos(e) {
-    this.purchasedLottos = e.detail.value;
-  }
-
   handleSubmitInputPriceForm(e) {
     const { value } = e.detail;
 
     this.purchasedLottosView.setNumberOfLottos(value);
+    this.purchasedLottos = getLottoNumbers(e.detail.value);
     this.renderAfterInputPrice();
   }
 
@@ -93,7 +86,7 @@ export default class Controller {
   }
 
   renderAfterInputPrice() {
-    this.purchasedLottosView.show();
+    this.purchasedLottosView.show(this.purchasedLottos);
     this.inputLottoFormView.show();
   }
 
