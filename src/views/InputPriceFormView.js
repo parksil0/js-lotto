@@ -35,11 +35,11 @@ export default class InputPriceFormView extends View {
   }
 
   getValidationMessage(validity) {
-    for (const key in VALIDATION_MESSAGE) {
-      if (validity[key]) {
-        return VALIDATION_MESSAGE[key];
-      }
-    }
+    const validationMessage = Object.keys(VALIDATION_MESSAGE)
+      .filter((value) => validity[value])
+      .map((value) => VALIDATION_MESSAGE[value]);
+
+    return validationMessage.length > 0 ? validationMessage[0] : null;
   }
 
   handleSubmit(e) {

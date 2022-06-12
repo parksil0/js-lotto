@@ -1,4 +1,3 @@
-import { CUSTOM_EVENT_NAME } from '../constants.js';
 import { $, $$ } from '../utils/dom.js';
 import View from './View.js';
 
