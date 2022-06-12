@@ -25,7 +25,7 @@ export default class InputLottoFormView extends View {
   }
 
   handleClickOpenResultModalButton() {
-    const isEmpty = !this.lottoInputNumbers.every((el) => el.value !== '');
+    const isEmpty = this.lottoInputNumbers.some((el) => el.value === '');
 
     if (isEmpty) {
       alert(ERROR_MESSAGE.NOT_TYPE_NUMBER);
