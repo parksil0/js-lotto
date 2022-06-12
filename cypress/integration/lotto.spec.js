@@ -91,7 +91,7 @@ describe('step1 필수 요구사항', () => {
     });
 
     it('당첨번호 중 중복된 숫자가 있으면 alert창을 호출한다.', () => {
-      cy.typeLottoInputNumbers('1, 1, 1, 1, 1, 1, 1');
+      cy.typeLottoInputNumbers([1, 1, 1, 1, 1, 1, 1]);
       const stub = cy.stub();
       cy.on('window:alert', stub);
 
@@ -105,14 +105,14 @@ describe('step1 필수 요구사항', () => {
     });
 
     it('당첨번호를 정상적으로 입력을 완료하면 모달창을 호출한다.', () => {
-      cy.typeLottoInputNumbers('1, 2, 3, 4, 5, 6, 7');
+      cy.typeLottoInputNumbers([1, 2, 3, 4, 5, 6, 7]);
       cy.get('.open-result-modal-button').click();
 
       cy.get('.modal').should('be.visible');
     });
 
     it('당첨된 경우, 모달창에 해당하는 등수와 수익률이 갱신된다.', () => {
-      cy.typeLottoInputNumbers('1, 2, 3, 4, 5, 6, 7');
+      cy.typeLottoInputNumbers([1, 2, 3, 4, 5, 6, 7]);
       cy.get('.open-result-modal-button').click();
 
       cy.get('#yield').then(($el) => {
@@ -133,7 +133,7 @@ describe('step1 필수 요구사항', () => {
     });
 
     it('모달 창의 다시 시작하기 버튼을 누르면 처음부터 다시 시작한다.', () => {
-      cy.typeLottoInputNumbers('1, 2, 3, 4, 5, 6, 7');
+      cy.typeLottoInputNumbers([1, 2, 3, 4, 5, 6, 7]);
       cy.get('.open-result-modal-button').click();
 
       cy.get('#restart').click();
