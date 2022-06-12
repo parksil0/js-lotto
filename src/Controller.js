@@ -59,7 +59,7 @@ export default class Controller {
     const { value } = e.detail;
 
     this.purchasedLottosView.setNumberOfLottos(value);
-    this.renderWholeView();
+    this.renderAfterInputPrice();
   }
 
   handleShowWinningResult(e) {
@@ -73,7 +73,7 @@ export default class Controller {
     this.inputLottoFormView.hide();
   }
 
-  renderWholeView() {
+  renderAfterInputPrice() {
     this.purchasedLottosView.show();
     this.inputLottoFormView.show();
   }
