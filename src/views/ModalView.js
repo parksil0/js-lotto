@@ -27,19 +27,6 @@ export default class ModalView extends View {
     });
   }
 
-  setWinningNumber(winningNumber, purchasedLottos) {
-    const matchNumbers = this.getRankings(winningNumber, purchasedLottos);
-    const yieldPrice = this.getYieldPrice(matchNumbers);
-
-    this.matchNumberCounts.forEach((el, index) => {
-      el.textContent = this.getMatchNumberCounts(
-        Object.values(matchNumbers)[index],
-      );
-    });
-
-    this.yield.textContent = this.getYield(yieldPrice, purchasedLottos.length);
-  }
-
   getRankings(winningNumber, purchasedLottos) {
     const matchCount = { 3: 0, 4: 0, 5: 0, 5.5: 0, 6: 0 };
     const bonusNumber = winningNumber.pop();

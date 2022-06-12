@@ -43,6 +43,25 @@ export default class Controller {
     );
   }
 
+  setWinningNumber(winningNumber, purchasedLottos) {
+    const matchNumbers = this.modalView.getRankings(
+      winningNumber,
+      purchasedLottos,
+    );
+    const yieldPrice = this.modalView.getYieldPrice(matchNumbers);
+
+    this.modalView.matchNumberCounts.forEach((el, index) => {
+      el.textContent = this.modalView.getMatchNumberCounts(
+        Object.values(matchNumbers)[index],
+      );
+    });
+
+    this.modalView.yield.textContent = this.modalView.getYield(
+      yieldPrice,
+      purchasedLottos.length,
+    );
+  }
+
   handleClickRestartButton() {
     this.inputPriceFormView.initialize();
     this.inputLottoFormView.initialize();
@@ -64,7 +83,7 @@ export default class Controller {
 
   handleShowWinningResult(e) {
     this.winningNumber = e.detail.value;
-    this.modalView.setWinningNumber(this.winningNumber, this.purchasedLottos);
+    this.setWinningNumber(this.winningNumber, this.purchasedLottos);
     this.renderModal();
   }
 
